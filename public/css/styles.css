@@ -1,6 +1,451 @@
-/******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 760px;
+  padding: 0;
+}
+
+.siteName a {
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  font-size: 1.8rem;
+  color: #000;
+  font-weight: bold;
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+
+#tools {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#tools a {
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #000;
+  float: right;
+  margin-right: 10px;
+  margin-top: -6%;
+}
+
+h1 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.3rem;
+  color: #000;
+  margin: 11px;
+  margin-top: 6%;
+}
+
+nav ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  list-style-type: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 10px;
+  margin-top: 10%;
+  min-width: 15px;
+  min-height: 15px;
+  justify-content: space-evenly;
+  background-color: #000000; 
+  text-align: center;
+}
+
+nav ul li a:hover {
+  color: #00bbff;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  list-style-type: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+#car-info {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#own-today {
+  line-height: 5px;
+  color: #0d6e92;
+  font-size: 0.8rem;
+  background-color: rgba(254, 245, 245, 0.5);
+  width: 150px;
+  height: 130px;
+  padding-top: 2px;
+  z-index: 1;
+  margin-left: 5%;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+#own-today h2 {
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#own-today p {
+  font-weight: 700;
+  font-family: 'Raleway', sans-serif;
+}
+
+#own-today button {
+  background-color: #0d6e92;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+  color: #fff;
+  padding: 10px 15px;
+  cursor: pointer;
+
+}
+
+
+#delorean {
+  width: 80%;
+  margin-left: 12%;
+  margin-top: 5%;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+#own-today button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  color: #000;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 7%;
+}
+
+#reviews {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+#reviews h3 {
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 7%;
+}
+
+#reviews ul {
+  margin-top: -1%;
+}
+
+#reviews ul li {
+  line-height: 25px;
+}
+
+#upgrades {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+#upgrades h3 {
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 7%;
+}
+
+#items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0 auto;
+
+}
+
+#items div {
+  text-align: center;
+
+}
+
+#items div>div {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  border: #0d6e92 3px solid;
+  background-color: #fff;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+#container #fire {
+  width: 40%;
+}
+
+#container #hubcap {
+  width: 44%;
+}
+
+#items div a {
+
+  text-align: center;
+
+}
+
+#items div img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+footer {
+  text-align: center;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0d6e92;
+  color: #fff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 15px;
+
+}
+
+@media only screen and (min-width: 35rem) {
+  #tools a {
+
+    font-size: 1.1rem;
+
+    float: right;
+    margin-right: 12px;
+    margin-top: -2%;
+  }
+
+
+  .siteName a {
+
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    top: 35px;
+    left: 10px;
+  }
+
+  nav ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+    line-height: 30px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #own-today {
+    margin-top: 7%;
+    width: 200px;
+    height: 180px;
+
+  }
+
+  #own-today h2 {
+    font-size: 1.4rem;
+  }
+
+  #own-today p {
+    font-size: 1.4rem;
+  }
+
+  #own-today button {
+    font-size: 1.4rem;
+    padding: 10px 15px;
+
+  }
+
+  #items div img {
+
+    width: 50%;
+  }
+
+  #items div a {
+    font-size: 1.5rem;
+  }
+
+  #items div {
+    width: 80%;
+
+  }
+
+  #upgrades h3 {
+    font-size: 1.4rem;
+    margin-left: 1%;
+  }
+
+  #reviews h3 {
+    font-size: 1.4rem;
+    margin-left: 1%;
+  }
+
+  #reviews ul {
+    margin-top: -1%;
+  }
+
+  #reviews ul li {
+    font-size: 1.4rem;
+  }
+
+  #inv-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #inv-display li {
+    width: 90%;
+    margin-left: 0;
+  }
+
+  #detail-content2 p {
+    font-size: 1rem;
+
+  }
+
+  #detail-content2 span {
+
+    font-size: 1.1rem;
+
+  }
+
+  #error-message {
+    font-size: 1.4rem;
+  }
+
+  #login-form {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  #login-form input {
+    padding: 1rem;
+  }
+
+  #login-form #check {
+
+    font-size: 1.2rem;
+
+  }
+
+  #check input {
+    width: 5%;
+  }
+
+}
+
+@media only screen and (min-width: 64rem) {
+
+  html {
+    background-image: url("/images/site/small_check.jpg");
+  }
+
+  body {
+    background-color: #fff;
+    margin-top: 1%;
+    border: 5px solid #0791ec;
+    margin-bottom: 1%;
+    border-radius: 1%;
+  }
+
+  #own-today {
+
+    width: 230px;
+    height: 218px;
+
+
+  }
+
+  #own-today h2 {
+    font-size: 1.8rem;
+  }
+
+  #own-today p {
+    font-size: 1.8rem;
+  }
+
+  #own-today button {
+    font-size: 1.8rem;
+    padding: 10px 15px;
+
+  }
+
+  #container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 7%;
+  }
+
+  #upgrades {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  #reviews {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  #reviews ul li {
+    line-height: 40px;
+    font-size: 1.2rem;
+  }
+
+  #container h3 {
+    margin-left: 3%;
+    font-size: 1.7rem;
+  }
+
+  #items div img {
+
+    width: 50%;
+  }
+
+  #items div>div {
+    margin: 10px;
+    width: 100%;
+
+  }
+
+  #items div {
+    text-align: center;
+  }
+
+  #items div a {
+    font-size: 1.2rem;
+    margin-left: 10%;
+  }
+
+  #container-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  #detail-content1 img {
+    margin-top: 5%;
+    width: 90%;
+
+  }
+
+ 
 }
