@@ -46,7 +46,7 @@ h1 {
 
 nav ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   list-style-type: none;
   padding-left: 10px;
   padding-right: 10px;
@@ -244,7 +244,7 @@ footer {
 
   nav ul {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     text-align: center;
     line-height: 30px;
   }
