@@ -14,6 +14,13 @@ const baseController = require("./controllers/baseController")
 const invController = require("./controllers/invController")
 const inventoryRoute = require('./routes/inventoryRoute')
 
+const utilities = require('./utilities');
+
+
+
+
+
+
 
 
 /* ***********************
@@ -31,10 +38,43 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 
 //Index route
-app.get("/", baseController.buildHome);
+app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+})
+
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  let title = 'Server Error'
+  let message = 'Oh no! There was a crash. Maybe try a different route?'
+  let status = 500
+
+  if (err.message.includes('Not Found') || err.statusCode === 404) {
+    title = '404 Not Found'
+    message = 'Sorry, the page you are looking for does not exist.'
+    status = 404
+  }
+
+  res.status(status).render("errors/error", { 
+    title, 
+    message, 
+    nav 
+  })
+})
+
+
+
 
 
 /* ***********************
