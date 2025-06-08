@@ -1,0 +1,69 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+        <p class="flash-message"><%- messages() %></p>
+        <% if (errors) { %>
+            <ul class="notice">
+                <% errors.array().forEach(error=> { %>
+                    <li>
+                        <%= error.msg %>
+                    </li>
+                    <% }) %>
+            </ul>
+            <% } %>
+
+                <p class="flash-message"><%- messages() %></p>
+
+                <p class="form-label">
+                    <i>All fields are required</i>
+                </p>
+
+                <form class="management-form inventory-form" action="/inv/add-inventory" method="POST">
+                    <label for="inv-make">Make:</label>
+                    <input type="text" id="inv-make" name="inv_make" required value="<%= locals.inv_make %>"
+                        title="Make must be alphabetic characters only" placeholder="Min 3 characters" />
+
+                    <label for="inv-model">Model:</label>
+                    <input type="text" id="inv-model" name="inv_model" required value="<%= locals.inv_model %>"
+                        title="Model must be alphabetic characters only" placeholder="Min 3 characters" />
+
+                    <label for="inv-year">Year:</label>
+                    <input type="text" id="inv-year" name="inv_year" pattern="[0-9]{4}" required
+                        value="<%= locals.inv_year %>" title="Year must be a 4 digit number"
+                        placeholder="4-digit year" />
+
+                    <label for="inv-description">Description:</label>
+                    <textarea id="inv-description" name="inv_description" required>
+    <%= locals.inv_description %></textarea>
+
+                    <label for="inv-image">Image:</label>
+                    <input type="text" id="inv-image" name="inv_image" required value="<%= locals.inv_image %>"
+                        placeholder="Image Path" title="Image must be a valid URL" />
+
+                    <label for="inv-thumbnail">Thumbnail:</label>
+                    <input type="text" id="inv-thumbnail" name="inv_thumbnail" required
+                        value="<%= locals.inv_thumbnail %>" placeholder="Thumbnail Path"
+                        title="Thumbnail must be a valid URL" />
+
+                    <label for="inv-color">Color:</label>
+                    <input type="text" id="inv-color" name="inv_color" required value="<%= locals.inv_color %>"
+                        placeholder="Vehicle Color" title="Color must be alphabetic characters only" />
+
+                    <label for="inv-price">Price:</label>
+                    <input type="text" id="inv-price" name="inv_price" pattern="[0-9]+(\.[0-9]{1,2})?" required
+                        value="<%= locals.inv_price %>" placeholder="Decimal or Integer"
+                        title="Price must be a number with up to 2 decimal places" />
+
+                    <label for="inv-miles">Mileage:</label>
+                    <input type="text" id="inv-miles" name="inv_miles" required pattern="\d+"
+                        value="<%= locals.inv_miles %>" placeholder="Digits only"
+                        title="Mileage must be a whole number without commas" />
+
+                    <label for="inv-classification">Classification:</label>
+                    <%- dropdown %>
+
+                        <button type="submit">Add Inventory Item</button>
+                </form>
+    
