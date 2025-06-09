@@ -48,8 +48,13 @@ validate.inventoryRules = () => {
   return [
     body("inv_model")
       .trim()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a model name."),
+      .isLength({ min: 3 })
+      .withMessage("Please provide a model name, minimum characters 3."),
+    
+    body("inv_make")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Please provide the inventory make- minimum characters 3."),
 
     body("inv_year")
       .trim()
@@ -60,7 +65,7 @@ validate.inventoryRules = () => {
 
     body("inv_description")
       .trim()
-      .isLength({ min: 1 })
+      .isLength({ min: 3 })
       .withMessage("Please provide a description."),
 
     body("inv_image")
@@ -83,7 +88,7 @@ validate.inventoryRules = () => {
       .withMessage("Please provide a price.")
       .toFloat() // convert to float before validating
       .isFloat({ min: 0 })
-      .withMessage("Price must be a positive number."),
+      .withMessage("Price must be a positive number, no commas."),
 
     body("inv_miles")
       .trim()
@@ -91,11 +96,11 @@ validate.inventoryRules = () => {
       .withMessage("Please provide the mileage.")
       .toInt() // convert to integer before validating
       .isInt({ min: 0 })
-      .withMessage("Mileage must be a positive integer."),
+      .withMessage("Mileage must be a positive integer, no commas."),
 
     body("inv_color")
       .trim()
-      .isLength({ min: 1 })
+      .isLength({ min: 3 })
       .withMessage("Please provide a color.")
       .matches(/^[a-zA-Z\s-]*$/)
       .withMessage(

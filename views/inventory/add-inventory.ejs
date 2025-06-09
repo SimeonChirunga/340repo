@@ -22,15 +22,15 @@
 
                 <form class="management-form inventory-form" action="/inv/add-inventory" method="POST">
                     <label for="inv-make">Make:</label>
-                    <input type="text" id="inv-make" name="inv_make" required value="<%= locals.inv_make %>"
+                    <input type="text" id="inv-make" name="inv_make" required value="<%= locals.inv_make %>" pattern="[A-Za-z]+" minlength="3"
                         title="Make must be alphabetic characters only" placeholder="Min 3 characters" />
 
                     <label for="inv-model">Model:</label>
-                    <input type="text" id="inv-model" name="inv_model" required value="<%= locals.inv_model %>"
+                    <input type="text" id="inv-model" name="inv_model" required value="<%= locals.inv_model %>"pattern="[A-Za-z]+" minlength="3"
                         title="Model must be alphabetic characters only" placeholder="Min 3 characters" />
 
                     <label for="inv-year">Year:</label>
-                    <input type="text" id="inv-year" name="inv_year" pattern="[0-9]{4}" required
+                    <input type="text" id="inv-year" name="inv_year" pattern="[0-9]{4}" maxlength="4" required
                         value="<%= locals.inv_year %>" title="Year must be a 4 digit number"
                         placeholder="4-digit year" />
 
@@ -48,7 +48,7 @@
                         title="Thumbnail must be a valid URL" />
 
                     <label for="inv-color">Color:</label>
-                    <input type="text" id="inv-color" name="inv_color" required value="<%= locals.inv_color %>"
+                    <input type="text" id="inv-color" name="inv_color" pattern="[A-Za-z]+" required value="<%= locals.inv_color %>"
                         placeholder="Vehicle Color" title="Color must be alphabetic characters only" />
 
                     <label for="inv-price">Price:</label>

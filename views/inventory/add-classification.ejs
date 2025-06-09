@@ -4,8 +4,26 @@
     </h1>
     <% } else { res.redirect('/') } %>
         <p class="flash-message"><%- messages() %></p>
+        <% if (errors) { %>
+            <ul class="notice">
+                <% errors.array().forEach(error=> { %>
+                    <li>
+                        <%= error.msg %>
+                    </li>
+                    <% }) %>
+            </ul>
+            <% } %>
 
-        <div class="management-links">
-            <a href="/inv/add-classification">Add New Classification</a>
-            <a href="/inv/add-inventory">Add New Inventory</a>
-            </div>
+                <p class="flash-message"><%- messages() %></p>
+
+                <p class="form-label">
+                    <i>Classification name must be alphabetic characters only</i>
+                </p>
+
+                <form action="/inv/add-classification" method="POST" class="management-form classification-form">
+                    <label for="classification-name">Classification Name:</label>
+                    <input type="text" id="classification-name" name="classification_name" pattern="[A-Za-z]+" minlength="3"
+                        placeholder="" title="Classification name must be alphabetic characters only" required />
+                    <button type="submit">Add Classification</button>
+                </form>
+    

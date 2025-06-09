@@ -14,7 +14,7 @@ router.get("/detail/:inv_id", utilities.handleErrors(invController.buildById));
 
 // Route for inv management
 router.get("/", (req, res, next) => {
-    utilities.handleError(invController.buildManageInventory)(req, res, next);
+    utilities.handleErrors(invController.buildManageInventory)(req, res, next);
 });
   
 // Route for add classification page

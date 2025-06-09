@@ -51,5 +51,16 @@
         grid-column: 2 / 3;
     }
 
-   
+    /* Form Styles */
+    .account-form label,
+    .account-form input,
+    .account-form p {
+        width: 300px;
+        margin: auto;
+    }
+
+    /* Management styles */
+    .management-links {
+        max-width: 600px;
+    }
 }
