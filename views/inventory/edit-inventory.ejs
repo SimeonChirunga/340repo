@@ -1,0 +1,51 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } %>
+
+        <div class="flash-messages"><%- messages() %></div>
+
+        <% if (errors) { %>
+            <ul class="notice" role="alert">
+                <% errors.array().forEach(error=> { %>
+                    <li>
+                        <%= error.msg %>
+                    </li>
+                    <% }) %>
+            </ul>
+            <% } %>
+
+                <form id="updateForm" action="/inv/update" method="post">
+                    <fieldset>
+                        <legend>Vehicle Details</legend>
+                        <p id="required-info">All fields are required</p>
+
+                        <div class="form-group">
+                            <label for="classificationSelect">Classification</label>
+                            <%- classificationSelect %>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="invMake">Make</label>
+                            <input type="text" name="inv_make" id="invMake" value="<%= locals.inv_make || '' %>"
+                                pattern=".{3,}" placeholder="Min of 3 characters" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="invModel">Model</label>
+                            <input type="text" name="inv_model" id="invModel" value="<%= locals.inv_model || '' %>"
+                                pattern=".{3,}" placeholder="Min of 3 characters" required>
+                        </div>
+
+                        <!-- Other fields in same format -->
+
+                        <input type="hidden" name="inv_id" value="<%= locals.inv_id || '' %>">
+
+                        <div class="form-group">
+                            <input type="submit" value="UPDATE" class="update-btn">
+                        </div>
+                    </fieldset>
+                </form>
+
+                <script src="/js/inv-update.js"></script>

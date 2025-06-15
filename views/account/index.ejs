@@ -1,0 +1,53 @@
+<% if (!title) { %>
+    <% throw new Error("Title is required") %>
+        <% } %>
+
+            <h1>
+                <%= title %>
+            </h1>
+
+            <% if (typeof messages==='function' ) { %>
+                <p class="flash-message"><%- messages() %></p>
+                <% } %>
+
+                    <% if (errors && typeof errors.array==='function' ) { %>
+                        <ul class="notice">
+                            <% errors.array().forEach(error=> { %>
+                                <li>
+                                    <%= error.msg %>
+                                </li>
+                                <% }) %>
+                        </ul>
+                        <% } %>
+
+                            <% if (locals.accountData) { %>
+                                <div id="welcome">
+                                    <h2>Welcome <%= accountData.account_firstname %>
+                                    </h2>
+                                    <p>You're logged in.</p>
+                                    <p>
+                                        <a href="/account/update/<%= accountData.account_id %>">
+                                            Edit Account Information
+                                        </a>
+                                    </p>
+                                </div>
+
+                                <% if (['Employee', 'Admin' ].includes(accountData.account_type)) { %>
+                                    <div id="accountMenu">
+                                        <h3>Inventory Management</h3>
+                                        <p><a href="/inv">Manage Inventory</a></p>
+                                    </div>
+                                    <% } %>
+
+                                    <div id="messageCenter">
+                                        <h3>Message Center</h3>
+                                            <ul>
+                                                <% if (typeof number !=='undefined' ) { %>
+                                                    <li>You have <%- number %> messages</li>
+                                                    <% } %>
+                                                        <li>Go to <a href="/message/inbox/">Inbox</a></li>
+                                            </ul>
+                                        </div>
+                                        <% } else { %>
+                                            <p>No account data available</p>
+                                            <% }%>

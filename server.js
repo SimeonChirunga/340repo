@@ -14,10 +14,11 @@ const baseController = require("./controllers/baseController")
 const invController = require("./controllers/invController")
 const inventoryRoute = require('./routes/inventoryRoute')
 const accountRoute = require("./routes/accountRoute")
-const utilities = require("./utilities/index")
+const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require("./database/")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 
 /* ***********************
@@ -37,9 +38,12 @@ app.use(session({
 }))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+// Middleware to check JWT token validity
 
 
 // Express Messages Middleware
+app.use(utilities.checkJWTToken) 
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
@@ -72,6 +76,7 @@ app.use("/inv", utilities.handleErrors(inventoryRoute))
 // Account routes
 
 app.use("/account", utilities.handleErrors(accountRoute))
+
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

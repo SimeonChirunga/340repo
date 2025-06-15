@@ -1,0 +1,74 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+
+        <%- messages() %>
+
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+
+                    <form id="updateAccount" action="/account" method="post">
+                        <fieldset>
+                            <label>
+                                First name:
+                                <input type="text" name="account_firstname" id="accountFirstname" required
+                                    value="<%= locals.accountData.account_firstname %>">
+                            </label>
+                            <label>
+                                Last name:
+                                <input type="text" name="account_lastname" id="accountLastname" required
+                                    value="<%= locals.accountData.account_lastname %>">
+                            </label>
+                            <label>
+                                Email address:
+                                <input type="email" name="account_email" id="accountEmail" required
+                                    value="<%= locals.accountData.account_email %>">
+                            </label>
+                            <input type="submit" value="UPDATE" class="login-btn" disabled>
+                            <input type="hidden" name="account_id" <% if(locals.accountData.account_id) { %> value="<%=
+                                locals.accountData.account_id %>"
+                                <% } %>>
+                        </fieldset>
+                    </form>
+
+
+
+                    <h2 id="upPassTitle">Update Password</h2>
+                    <form id="updatePassword" action="/account/update/updatePassword" method="post">
+                        <fieldset>
+                            <p id="required-info">*Note your original password will be changed.</p>
+                            <label>
+                                Password:
+                                <input type="password" name="account_password" id="input-pass2"
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+                            </label>
+                            <label>
+                                <div id="instructions">
+                                    <p>There must be at least 12 characters, one must be a number, one must be a
+                                        lowercase letter, one must be a capital letter, and one must be a
+                                        non-alphanumeric character.</p>
+                                </div>
+                                <div id="check2">
+                                    <p>Show password:</p>
+                                    <input id="checkbox2" type="checkbox" onclick="myFunction()">
+                                </div>
+                                <input type="hidden" name="account_id" <% if(locals.accountData.account_id) { %> value="
+                                <%= locals.accountData.account_id %>"
+                                    <% } %>>
+                                        <input type="submit" value="CHANGE" class="login-btn">
+                            </label>
+                        </fieldset>
+                    </form>
+
+                    
+
+                    

@@ -717,6 +717,333 @@ footer a {
   text-decoration: none;
 }
 
+#manage-item {
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 2%;
+  padding-bottom: 15%;
+}
+
+#manage-item select {
+  padding: 10px;
+  border: 1px solid #000;
+  font-size: 1rem;
+}
+
+#manage-item table {
+  text-align: left;
+  margin-top: 5%;
+
+}
+
+table td {
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+}
+
+table a:hover {
+  color: red;
+}
+
+
+/* --- UPDATE INVENTORY FORM --- */
+
+#updateForm {
+  margin: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#updateForm fieldset {
+  margin: 2rem 0;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 0.5rem 2%;
+  background-color: #0d6e92;
+}
+
+#updateForm label {
+  display: block;
+  text-align: left;
+  padding-top: 1rem;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  margin: 15px;
+}
+
+#updateForm input {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+
+#updateForm textarea {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  resize: none;
+}
+
+#updateForm select {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+
+#updateForm .login-btn {
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+#updateForm .login-btn:hover {
+  background-color: #0d6e92;
+  color: #fff;
+}
+
+#updateForm input:required {
+  border-left: red solid 6px;
+}
+
+#updateForm input:required:valid {
+  border-left: green solid 6px;
+}
+
+
+
+#updateForm #required-info {
+  color: white;
+  margin-left: 18px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+#welcome {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 8%;
+  line-height: 10px;
+
+}
+
+#welcome h2 {
+  margin-left: 3%;
+  font-size: 1rem;
+}
+
+#welcome p {
+  margin-left: 3%;
+  font-size: .8rem;
+}
+
+#welcome p a:hover {
+  color: red;
+}
+
+#permission {
+  text-align: center;
+}
+
+#accountMenu {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 12%;
+  line-height: 10px;
+  margin-bottom: 10%;
+}
+
+#accountMenu h3 {
+  margin-left: 3%;
+  font-size: 1rem;
+}
+
+#accountMenu p {
+  margin-left: 3%;
+  font-size: .8rem;
+}
+
+#accountMenu p a:hover {
+  color: red;
+}
+
+#updateAccount {
+  margin: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#updateAccount fieldset {
+  margin: 2rem 0;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 0.5rem 2%;
+  background-color: #0d6e92;
+}
+
+#updateAccount label {
+  display: block;
+  text-align: left;
+  padding-top: 1rem;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  margin: 15px;
+}
+
+#updateAccount input {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+
+#updateAccount textarea {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  resize: none;
+}
+
+#updateAccount select {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+
+#updateAccount .login-btn {
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+#updateAccount .login-btn:hover {
+  background-color: #0d6e92;
+  color: #fff;
+}
+
+#updateAccount input:required {
+  border-left: red solid 6px;
+}
+
+#updateAccount input:required:valid {
+  border-left: green solid 6px;
+}
+
+
+
+#updateAccount #required-info {
+  color: white;
+  margin-left: 18px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+
+/* UPDATE PASSWORD FORM */
+
+#updatePassword {
+  margin: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#updatePassword fieldset {
+  margin: 2rem 0;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 0.5rem 2%;
+  background-color: #0d6e92;
+}
+
+#updatePassword label {
+  display: block;
+  text-align: left;
+  padding-top: 1rem;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  margin: 15px;
+}
+
+#updatePassword input {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+
+#updatePassword .login-btn {
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+#updatePassword .login-btn:hover {
+  background-color: #0d6e92;
+  color: #fff;
+}
+
+
+#updatePassword #check2 {
+  display: flex;
+  font-size: 1rem;
+  margin: 15px;
+  color: #fff;
+  font-weight: bold;
+}
+
+#check2 input {
+  width: 7%;
+  margin-left: 8px;
+  margin-top: 6px;
+  cursor: pointer;
+}
+
+#messages {
+  color: rgb(162, 7, 7);
+  font-family: 'Montserrat', sans-serif;
+  width: 90%;
+}
+
+#updatePassword #instructions p {
+  color: yellow;
+  margin: 20px;
+}
+
+#updatePassword input:required {
+  border-left: red solid 6px;
+}
+
+#updatePassword input:required:valid {
+  border-left: green solid 6px;
+}
+
+#updatePassword legend {
+  margin-top: 10%;
+}
+
+#updatePassword #required-info {
+  color: white;
+  margin-left: 18px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+#upPassTitle {
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 2%;
+}
 
 
 

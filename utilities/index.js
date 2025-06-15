@@ -1,5 +1,9 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
+const accountModel = require("../models/account-model")
+
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -133,6 +137,80 @@ Util.buildDropdown = async function () {
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+   jwt.verify(
+    req.cookies.jwt,
+    process.env.ACCESS_TOKEN_SECRET,
+    function (err, accountData) {
+     if (err) {
+      req.flash("Please log in")
+      res.clearCookie("jwt")
+      return res.redirect("/account/login")
+     }
+     res.locals.accountData = accountData
+     res.locals.loggedin = 1
+     next()
+    })
+  } else {
+   next()
+  }
+}
+ 
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+
+ Util.checkPermission = (req, res, next) => {
+  const type = res.locals.accountData.account_type
+  if(type == "Client") {
+    return res.redirect("/account/")
+  } else {
+    next()
+  }
+}
+
+Util.checkInventoryAccess = (req, res, next) => {
+  try {
+    const token = req.cookies.jwt
+    if (!token) {
+      req.flash("notice", "You do not have permission to access this page. Please log in with a valid account.")
+      return res.redirect("/account/login")
+    }
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+      if (err) {
+        req.flash("notice", "You do not have permission to access this page. Please log in with a valid account.")
+        return res.redirect("/account/login")
+      }
+
+      if (decoded.account_type !== "Employee" && decoded.account_type !== "Admin") {
+        req.flash("notice", "You do not have permission to access this page.")
+        return res.redirect("/account/")
+      }
+
+      res.locals.accountData = decoded
+      res.locals.loggedin = true
+      next()
+    })
+  } catch (error) {
+    req.flash("notice", "You do not have permission to access this page. Please log in with a valid account.")
+    res.redirect("/account/login")
+  }
+}
+
 
 
 

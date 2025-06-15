@@ -159,4 +159,102 @@ validate.checkInventoryData = async (req, res, next) => {
   next();
 };
 
+/*  **********************************
+ *  Update Inventory Data Validation Rules
+ * ********************************* */
+validate.newInventoryRules = () => {
+    return [
+    body("classification_id")
+    .isNumeric({min: 1})
+    .withMessage("Please, choose a classification."),
+    
+    body("inv_make")
+    .isLength({min: 3})
+    .withMessage("Make field does not meet requirements"),
+
+    body("inv_model")
+    .isLength({min: 3})
+    .withMessage("Model field does not meet requirements"),
+
+    body("inv_description")
+    .isLength({min: 1})
+    .withMessage("Description field does not meet requirements"),
+
+    body("inv_image")
+    .isLength({min: 10})
+    .withMessage("Image field does not meet requirements"),
+
+    body("inv_thumbnail")
+    .isLength({min: 10})
+    .withMessage("Thumbnail field does not meet requirements"),
+    
+    body("inv_price")
+    .isNumeric({min: 1})
+    .withMessage("Price field does not meet requirements"),
+
+    body("inv_year")
+    .isNumeric({min: 4, max: 4})
+    .withMessage("Year field does not meet requirements"),
+
+    body("inv_miles")
+    .isNumeric({min: 1})
+    .withMessage("Miles field does not meet requirements"),
+
+    body("inv_color")
+    .isLength({min: 1})
+    .withMessage("Color field does not meet requirements"),
+    
+    body("inv_id")
+    .isLength({min: 1})
+    .withMessage("Inventory Id does not meet requirements")
+    ]
+}
+
+/* ******************************
+ * Check new inventory data and continue to db if valid errors will be directed back to edit view
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req);
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body;
+
+  // if there are errors, send back with error messages
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    let dropdown = await utilities.buildDropdown();
+    const itemName = `${inv_make} ${inv_model}`
+    return res.render("./inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      dropdown,
+      errors,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    });
+  }
+
+  // if no errors, continue to db
+  next();
+};
+
 module.exports = validate;
