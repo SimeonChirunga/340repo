@@ -40,7 +40,7 @@
                         </fieldset>
                     </form>
 
-
+                    <script src="../../public/js/acc-update.js"></script>
 
                     <h2 id="upPassTitle">Update Password</h2>
                     <form id="updatePassword" action="/account/update/updatePassword" method="post">
@@ -57,10 +57,7 @@
                                         lowercase letter, one must be a capital letter, and one must be a
                                         non-alphanumeric character.</p>
                                 </div>
-                                <div id="check2">
-                                    <p>Show password:</p>
-                                    <input id="checkbox2" type="checkbox" onclick="myFunction()">
-                                </div>
+                                
                                 <input type="hidden" name="account_id" <% if(locals.accountData.account_id) { %> value="
                                 <%= locals.accountData.account_id %>"
                                     <% } %>>
@@ -69,6 +66,7 @@
                         </fieldset>
                     </form>
 
-                    
+                    <script src="/js/acc-update.js"></script>
+                    <script src="/js/pas-update.js"></script>        
 
                     

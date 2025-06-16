@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken');
 const utilities = require('./index');
+const { promisify } = require('util');
 
-function checkInventoryAccess(req, res, next) {
+// Convert jwt.verify to promise-based
+const verifyAsync = promisify(jwt.verify);
+
+async function checkInventoryAccess(req, res, next) {
   try {
     // 1. Check for JWT token
     const token = req.cookies.jwt;
@@ -11,23 +15,31 @@ function checkInventoryAccess(req, res, next) {
     }
 
     // 2. Verify the token
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-      if (err) {
-        req.flash('notice', 'Session expired. Please log in again');
-        return res.redirect('/account/login');
-      }
-
-      // 3. Check account type
-      if (decoded.account_type === 'Employee' || decoded.account_type === 'Admin') {
-        req.accountData = decoded; // Attach account data to request
-        next();
-      } else {
-        req.flash('notice', 'You do not have sufficient privileges');
-        res.redirect('/account/login');
-      }
-    });
+    const decoded = await verifyAsync(token, process.env.ACCESS_TOKEN_SECRET);
+    
+    // 3. Check account type
+    if (decoded.account_type === 'Employee' || decoded.account_type === 'Admin') {
+      req.accountData = decoded; // Attach account data to request
+      return next();
+    }
+    
+    req.flash('notice', 'You do not have sufficient privileges');
+    return res.redirect('/account/login');
+    
   } catch (error) {
-    utilities.handleErrors(error, req, res);
+    if (error.name === 'TokenExpiredError') {
+      req.flash('notice', 'Session expired. Please log in again');
+      return res.redirect('/account/login');
+    }
+    
+    if (error.name === 'JsonWebTokenError') {
+      req.flash('notice', 'Invalid authentication token');
+      return res.redirect('/account/login');
+    }
+    
+    // For other errors
+    console.error('Inventory access check error:', error);
+    return utilities.handleErrors(error, req, res);
   }
 }
 

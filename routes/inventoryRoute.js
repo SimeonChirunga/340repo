@@ -13,12 +13,15 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inv_id", utilities.handleErrors(invController.buildById));
 
 // Route for inv management
-router.get("/", (req, res, next) => {
-  utilities.checkInventoryAccess, utilities.handleErrors(invController.buildManageInventory)(req, res, next);
-});
 
-// Route to get Edit
-//router.get("/edit-inventory/:inv_id",  utilities.checkInventoryAccess, utilities.handleErrors(invController.editInventoryView));
+
+// Corrected main routes:
+router.get("/",
+  utilities.checkLogin,
+  utilities.checkInventoryAccess,
+  utilities.handleErrors(invController.buildManageInventory)
+);
+
 router.get("/edit-inventory/:inv_id",
   utilities.checkLogin,
   utilities.checkInventoryAccess,

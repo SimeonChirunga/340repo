@@ -6,7 +6,7 @@
 
         <div class="flash-messages"><%- messages() %></div>
 
-        <% if (errors) { %>
+        <% if (errors && errors.array) { %>
             <ul class="notice" role="alert">
                 <% errors.array().forEach(error=> { %>
                     <li>
@@ -16,35 +16,65 @@
             </ul>
             <% } %>
 
-                <form id="updateForm" action="/inv/update" method="post">
+                <form id="updateForm" action="/inv/update/<%= inv_id || locals.inv_id %>" method="post">
                     <fieldset>
-                        <legend>Vehicle Details</legend>
+                        
                         <p id="required-info">All fields are required</p>
 
-                        <div class="form-group">
-                            <label for="classificationSelect">Classification</label>
-                            <%- classificationSelect %>
-                        </div>
+                      
+                        <p>Choose a classificaton to see those inventory items</p>
+                        <%- classificationSelect %>                
 
-                        <div class="form-group">
-                            <label for="invMake">Make</label>
-                            <input type="text" name="inv_make" id="invMake" value="<%= locals.inv_make || '' %>"
-                                pattern=".{3,}" placeholder="Min of 3 characters" required>
-                        </div>
+                        
+                            <label for="inv_make">Make</label>
+                            <input type="text" name="inv_make" id="inv_make"
+                                value="<%= inv_make || locals.inv_make || '' %>" pattern=".{3,}" required>
+                        
 
-                        <div class="form-group">
-                            <label for="invModel">Model</label>
-                            <input type="text" name="inv_model" id="invModel" value="<%= locals.inv_model || '' %>"
-                                pattern=".{3,}" placeholder="Min of 3 characters" required>
-                        </div>
+                     
+                            <label for="inv_model">Model</label>
+                            <input type="text" name="inv_model" id="inv_model"
+                                value="<%= inv_model || locals.inv_model || '' %>" pattern=".{3,}" required>
+                      
+                        
+                            <label for="inv_description">Description</label>
+                            <input type="text" name="inv_description" id="inv_description" value="<%= inv_description || locals.inv_description || '' %>"
+                                pattern=".{3,}" required>
+                        
+                        
+                            <label for="inv_image">Image</label>
+                            <input type="text" name="inv_image" id="inv_model" placeholder="/images/vehicles/filename.png"  value="<%= inv_image || locals.inv_image || '' %>"
+                                pattern=".{3,}" required>
+                       
+                            <label for="inv_thumbnail">Thumbnail</label>
+                            <input type="text" name="inv_thumbnail" id="inv_thumbnail" placeholder="/images/vehicles/filename.png" value="<%= inv_thumbnail || locals.inv_thumbnail || '' %>"
+                                pattern=".{3,}" required>
+                    
+                        
+                            <label for="inv_price">Price</label>
+                            <input type="text" name="inv_price" id="inv_price" value="<%= inv_price || locals.inv_price || '' %>"
+                            placeholder="decimal or integer" pattern="^([0-9\.]*$)" required>>
+                        
+                        
+                            <label for="inv_year">Year</label>
+                            <input type="text" name="inv_year" value="<%= locals.inv_year %>" id="invYear" placeholder="4-digit year"
+                                pattern="[0-9]{4}" required>
+                     
+                            <label for="inv_miles">Miles</label>
+                            <input type="text" name="inv_miles" value="<%= locals.inv_miles %>" id="invMiles" placeholder="digits only"
+                                pattern="[0-9]+" required>
+                        
+                            <label for="inv_color">Color</label>
+                            <input type="text" name="inv_color" value="<%= locals.inv_color %>" id="invColor" pattern="[a-zA-Z]+" required>
+                      
 
-                        <!-- Other fields in same format -->
 
-                        <input type="hidden" name="inv_id" value="<%= locals.inv_id || '' %>">
+                        <input type="hidden" name="inv_id" value="<%= inv_id || locals.inv_id %>">
 
-                        <div class="form-group">
+                        
                             <input type="submit" value="UPDATE" class="update-btn">
-                        </div>
+                            <a href="/inv/" class="cancel-btn">CANCEL</a>
+                    
                     </fieldset>
                 </form>
 

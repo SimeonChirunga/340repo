@@ -87,6 +87,21 @@ Util.buildDetailView = async function (vehicle) {
   return html;
 };
 
+Util.buildClassificationOptions = async function(classification_id = null) {
+  let data = await invModel.getClassifications();
+  let options = '';
+  
+  data.rows.forEach((row) => {
+    options += `<option value="${row.classification_id}"`;
+    if (classification_id != null && row.classification_id == classification_id) {
+      options += ' selected';
+    }
+    options += `>${row.classification_name}</option>`;
+  });
+  
+  return options;
+};
+
 
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications()
