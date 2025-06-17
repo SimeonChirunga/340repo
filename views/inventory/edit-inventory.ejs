@@ -16,7 +16,7 @@
             </ul>
             <% } %>
 
-                <form id="updateForm" action="/inv/update/<%= inv_id || locals.inv_id %>" method="post">
+                <form id="updateForm" action="/inv/update/" method="post">
                     <fieldset>
                         
                         <p id="required-info">All fields are required</p>
@@ -53,7 +53,7 @@
                         
                             <label for="inv_price">Price</label>
                             <input type="text" name="inv_price" id="inv_price" value="<%= inv_price || locals.inv_price || '' %>"
-                            placeholder="decimal or integer" pattern="^([0-9\.]*$)" required>>
+                            placeholder="decimal or integer" pattern="^([0-9\.]*$)" required>
                         
                         
                             <label for="inv_year">Year</label>

@@ -58,7 +58,7 @@ router.post(
 
 // Process Account Update (protected)
 router.post(
-  "/update/account",
+  "/",
   utilities.checkLogin,
   regValidate.updateRules(),
   regValidate.checkUpdateData,

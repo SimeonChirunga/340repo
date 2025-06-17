@@ -266,7 +266,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
 /* ***************************
  *  Build edit inventory view
  * ************************** */
-// Remove editInventoryView and keep only buildEditInventory
+
 invCont.buildEditInventory = async function(req, res, next) {
   try {
     const inv_id = parseInt(req.params.inv_id);

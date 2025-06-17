@@ -68,7 +68,10 @@ router.post(
   utilities.handleErrors(invController.updateInventory))
 
 
-router.get("/getInventory/:classification_id", utilities.checkInventoryAccess, utilities.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classification_id",
+  utilities.checkInventoryAccess,
+  utilities.handleErrors(invController.getInventoryJSON))
+  
 module.exports = router; 
 
 
