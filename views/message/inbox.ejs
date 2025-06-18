@@ -1,0 +1,13 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+        <%- messages() %>
+
+            <ul id="inboxOptions">
+                <li><a href="/message/newMessage/">Create New Message</a></li>
+                <%- archived %>
+            </ul>
+
+            <%- table %>

@@ -1,5 +1,6 @@
 const utilities = require("../utilities/");
 const accountModel = require("../models/account-model");
+const messageModel = require("../models/messageModel")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -155,25 +156,22 @@ async function accountLogin(req, res, next) {
     next(error); // Pass to error handler
   }
 }
+
+
 /* ****************************************
 *  Deliver management view
 * *************************************** */
 async function buildManagement(req, res, next) {
-  try {
     let nav = await utilities.getNav()
-    let accountData = res.locals.accountData;
-    if (!accountData) {
-      req.flash("notice", "You must be logged in to access this page.");
-      return res.redirect("/account/login");
-    }
+    let account_id = res.locals.accountData.account_id
+    let data = await messageModel.getMessage(account_id)
+    let number = await utilities.buildUnreadMessages(data)
     res.render("account/", {
       title: "Account Management",
       nav,
+      number,
       errors: null,
     })
-  } catch (error) {
-    next(error)
-  }
 }
 
 
